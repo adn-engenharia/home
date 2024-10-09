@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ADN Engenharia - Contato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Garet&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Garet', sans-serif; /* Usando a fonte Garet */
+            margin: 0;
+            padding: 0;
+            background-color: #101010; /* Cor de fundo sólida */
+            color: #ffffff; /* Cor padrão do texto */
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0d1824; /* Cor de fundo */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0; /* Começa invisível */
+            transition: opacity 0.5s ease; /* Efeito de transição */
+        }
+
+        .logo {
+            margin-bottom: 20px; /* Espaçamento abaixo do logo */
+        }
+
+        .services {
+            font-size: 20px;
+            margin: 20px 0;
+            text-align: left; /* Alinhar texto à esquerda */
+        }
+
+        .service-item {
+            margin: 10px 0; /* Espaçamento entre os itens de serviço */
+            color: #ffffff; /* Cor dos itens de serviço */
+            display: flex;
+            align-items: center;
+            font-weight: bold; /* Destacar os itens de serviço */
+            transition: transform 0.3s; /* Efeito de transição para escala */
+        }
+
+        .service-item:hover {
+            transform: scale(1.05); /* Aumentar o tamanho ao passar o mouse */
+        }
+
+        .bullet {
+            width: 12px; /* Tamanho da bola */
+            height: 12px; /* Tamanho da bola */
+            background-color: #f6a800; /* Cor da bola */
+            border-radius: 50%; /* Torna a bola circular */
+            margin-right: 10px; /* Espaçamento entre a bola e o texto */
+        }
+
+        .whatsapp-link {
+            display: inline-block;
+            background-color: #25D366; /* Cor do WhatsApp */
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 20px;
+            margin: 20px 0;
+            transition: background-color 0.3s; /* Efeito de transição para o botão */
+        }
+
+        .whatsapp-link:hover {
+            background-color: #128C7E; /* Cor do WhatsApp ao passar o mouse */
+        }
+
+        .message {
+            font-size: 20px; /* Tamanho da fonte */
+            color: #ffffff; /* Cor do texto da mensagem */
+            margin: 20px 0; /* Margem acima e abaixo */
+        }
+
+        @media (max-width: 600px) {
+            .service-item {
+                font-size: 18px; /* Ajustar tamanho da fonte em telas pequenas */
+            }
+
+            .message {
+                font-size: 18px; /* Ajustar tamanho da fonte em telas pequenas */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="container">
+        <img src="ADN_LOGO.png" alt="Logo ADN Engenharia" class="logo" width="200"> <!-- Logo no topo -->
+        <div class="services" id="services"></div> <!-- Contêiner para os serviços -->
+        <p class="message" id="highlighted-message"></p> <!-- Mensagem -->
+        <a href="https://wa.me/5538998487948" class="whatsapp-link" target="_blank">
+            <img src="whatsapp-icon.png" alt="Ícone do WhatsApp" width="30" style="vertical-align: middle; margin-right: 8px;">
+            Clique aqui para falar no WhatsApp!
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById("container");
+            container.style.opacity = "1"; // Torna o container visível
+            displayServices(); // Chama a função para exibir os serviços
+            displayMessage(); // Chama a função para exibir a mensagem
+        });
+
+        function displayServices() {
+            const servicesList = [
+                "Construção com qualidade garantida!",
+                "Reformas que transformam espaços!",
+                "Pintura para dar vida à sua casa!",
+                "Hidráulica de primeira, sem vazamentos!",
+                "Telhados e calhas que duram!",
+                "Pisos e revestimentos que impressionam!",
+                "Piscinas para momentos inesquecíveis!"
+            ];
+
+            const servicesContainer = document.getElementById("services");
+            servicesList.forEach(service => {
+                const serviceItem = document.createElement("p");
+                serviceItem.className = "service-item";
+                
+                // Cria a bola
+                const bullet = document.createElement("span");
+                bullet.className = "bullet";
+
+                serviceItem.appendChild(bullet); // Adiciona a bola
+                serviceItem.appendChild(document.createTextNode(service)); // Adiciona o texto
+                serviceItem.appendChild(document.createTextNode(" " + getEmoji(service))); // Adiciona emoji ao final
+                servicesContainer.appendChild(serviceItem); // Adiciona ao contêiner
+            });
+        }
+
+        function getEmoji(service) {
+            switch (service) {
+                case "Construção com qualidade garantida!":
+                    return "🏗️";
+                case "Reformas que transformam espaços!":
+                    return "🔨";
+                case "Pintura para dar vida à sua casa!":
+                    return "🎨";
+                case "Hidráulica de primeira, sem vazamentos!":
+                    return "💧";
+                case "Telhados e calhas que duram!":
+                    return "☔";
+                case "Pisos e revestimentos que impressionam!":
+                    return "🛠️";
+                case "Piscinas para momentos inesquecíveis!":
+                    return "🏊";
+                default:
+                    return "";
+            }
+        }
+
+        function displayMessage() {
+            const message = "Precisa de reforma? Faça seu orçamento! ";
+            const messageContainer = document.getElementById("highlighted-message");
+            messageContainer.textContent = message; // Define o texto da mensagem
+            messageContainer.append(getEmoji("Precisa de reforma? Faça seu orçamento!")); // Adiciona emoji ao final da mensagem
+        }
+    </script>
+
+</body>
+</html>
